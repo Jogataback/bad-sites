@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Andarson</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" />
+    <style>
+      :root {
+        --primary-color: #f8f208;
+        --primary-color-dark: #ee9821;
+        --secondary-color: #04091d;
+        --secondary-color-light: #0f1221;
+        --secondary-color-dark: #03060f;
+        --text-light: #94a3b8;
+        --white: #ffffff;
+        --max-width: 1200px;
+        --gradient:
+          linear-gradient(to right,
+            var(--primary-color-dark),
+            var(--primary-color));
+      }
+  
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+  
+      ul {
+        list-style: none;
+      }
+  
+      img {
+        display: flex;
+        width: 100%;
+      }
+  
+      a {
+        color: var(--white);
+        text-decoration: none;
+      }
+  
+      button {
+        font-family: inherit;
+        border: 0px solid transparent;
+        outline: 1px solid transparent;
+        background-color: transparent;
+        cursor: pointer;
+      }
+  
+      button:focus-visible,
+      a:focus-visible {
+        outline: 1px solid #999;
+      }
+  
+      .section-container {
+        max-width: var(--max-width);
+        margin: auto;
+        padding: 5rem 1rem;
+      }
+  
+      .section-header {
+        font-size: 2.5rem;
+        font-weight: 600;
+        text-align: center;
+      }
+  
+      .section-subheader {
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+        text-align: center;
+      }
+  
+      .section-description {
+        max-width: 600px;
+        margin-top: 1rem;
+        margin-inline: auto;
+        color: var(--text-light);
+        text-align: center;
+      }
+  
+      .btn {
+        padding: 0.5rem 1.5rem;
+        color: var(--secondary-color);
+        font-size: 1rem;
+        border-radius: 5rem;
+        background-image: var(--gradient);
+      }
+  
+      html {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        scroll-behavior: smooth;
+      }
+  
+      body {
+        color: var(--white);
+        font-family: Georgia, serif;
+        background-color: var(--secondary-color);
+      }
+  
+      .header {
+        position: relative;
+        background-color: var(--secondary-color-dark);
+      }
+  
+      .header-socials {
+        display: none;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        gap: 1rem;
+        flex-direction: column;
+        z-index: 1;
+      }
+  
+      .header-socials a {
+        padding: 7px 13px;
+        color: var(--secondary-color);
+        font-size: 1.5rem;
+        background-image: var(--gradient);
+      }
+  
+      nav {
+        position: fixed;
+        width: 100%;
+        isolation: isolate;
+        z-index: 9;
+      }
+  
+      .nav-bar {
+        position: relative;
+        max-width: var(--max-width);
+        margin-inline: auto;
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        justify-content: space-between;
+        isolation: isolate;
+      }
+  
+      .nav-header {
+        width: 100%;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: var(--secondary-color);
+      }
+  
+      .nav-logo a {
+        font-size: 1.5rem;
+        font-weight: 700;
+      }
+  
+      .nav-logo a span {
+        color: var(--primary-color-dark);
+      }
+  
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 2rem;
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        transform: translateY(-100%);
+        background-color: var(--secondary-color-light);
+        transition: transform 500ms;
+        z-index: -1;
+      }
+  
+      .nav-links.open {
+        transform: translateY(0);
+      }
+  
+      .link a {
+        transition: color 300ms;
+      }
+  
+      .link.btn a {
+        color: var(--secondary-color);
+      }
+  
+      .link a:hover {
+        color: var(--primary-color-dark);
+      }
+  
+      .nav-menu-btn {
+        color: var(--white);
+        font-size: 1.5rem;
+      }
+  
+      .header-container {
+        padding-top: 10rem;
+        display: grid;
+        gap: 4rem;
+      }
+  
+      .header-image img {
+        max-width: 400px;
+        margin: auto;
+      }
+  
+      .header-content {
+        text-align: center;
+      }
+  
+      .header-content h4 {
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+        font-weight: 400;
+      }
+  
+      .header-content h1 {
+        margin-bottom: 2rem;
+        font-size: 3rem;
+        font-weight: 600;
+        line-height: 3.5rem;
+      }
+  
+      .header-content p {
+        margin-bottom: 2rem;
+        color: var(--text-light);
+      }
+  
+      .about-container {
+        display: grid;
+        gap: 4rem;
+      }
+  
+      .about-image img {
+        max-width: 450px;
+        margin: auto;
+      }
+  
+      .about-content .section-header {
+        margin-bottom: 1rem;
+        text-align: left;
+      }
+  
+      .about-content p {
+        margin-bottom: 2rem;
+        color: var(--text-light);
+      }
+  
+      .about-content h4 {
+        margin-bottom: 2rem;
+        padding: 2rem;
+        color: var(--text-light);
+        font-size: 1rem;
+        font-weight: 400;
+        border-radius: 5px;
+        border-left: 2px solid var(--primary-color-dark);
+        background-color: var(--secondary-color-light);
+      }
+  
+      .about-btns {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+      }
+  
+      .about-btns .download-btn {
+        padding: 0.5rem 1.5rem;
+        font-size: 1rem;
+        border-radius: 5rem;
+      }
+  
+      .about-btns a {
+        padding: 3px 8px;
+        color: var(--secondary-color);
+        font-size: 1.25rem;
+        border-radius: 50%;
+        background-image: var(--gradient);
+      }
+  
+      .banner-container {
+        padding-block: 2rem;
+        display: grid;
+        gap: 1rem;
+      }
+  
+      .banner-card {
+        padding: 2rem 1rem;
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+        border-radius: 5px;
+        border-bottom: 2px solid transparent;
+        background-color: var(--secondary-color-light);
+        transition: border-color 300ms;
+      }
+  
+      .banner-card:hover {
+        border-color: var(--primary-color-dark);
+      }
+  
+      .banner-card span {
+        padding: 4px 10px;
+        font-size: 1.5rem;
+        border-radius: 50%;
+        background-color: var(--secondary-color-dark);
+        transition: color 300ms,
+          background-image 300ms;
+      }
+  
+      .banner-card:hover span {
+        color: var(--secondary-color);
+        background-image: var(--gradient);
+      }
+  
+      .banner-card h4 {
+        margin-bottom: 5px;
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+  
+      .banner-card p {
+        color: var(--text-light);
+      }
+  
+      .project-header {
+        margin-bottom: 4rem;
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+      }
+  
+      .project-nav {
+        display: flex;
+        row-gap: 2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+  
+      .project-btn {
+        color: var(--white);
+        background-image: none;
+        background-color: transparent;
+      }
+  
+      .mixitup-control-active {
+        color: var(--secondary-color);
+        background-image: var(--gradient);
+      }
+  
+      .project-grid {
+        display: grid;
+        gap: 1rem;
+      }
+  
+      .project-card img {
+        border-radius: 5px;
+        cursor: pointer;
+      }
+  
+      .service-grid {
+        margin-top: 4rem;
+        display: grid;
+        gap: 4rem;
+      }
+  
+      .service-card {
+        text-align: center;
+        border-radius: 5px;
+        border-bottom: 2px solid transparent;
+        transition: border-color 300ms;
+      }
+  
+      .service-card:hover {
+        border-color: var(--primary-color-dark);
+      }
+  
+      .service-card span {
+        display: block;
+        position: relative;
+        font-size: 2rem;
+        text-align: center;
+        transition: color 300ms,
+          background-image 300ms;
+      }
+  
+      .service-card span i {
+        position: relative;
+        padding: 4px 10px;
+      }
+  
+      .service-card:hover span i {
+        color: var(--secondary-color);
+      }
+  
+      .service-card span::after {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        content: "";
+        width: 100%;
+        height: 50%;
+        border-radius: 12px 12px 0 0;
+        background-color: var(--secondary-color-light);
+        z-index: -2;
+      }
+  
+      .service-card span i::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: var(--gradient);
+        transition: opacity 300ms;
+        opacity: 0;
+        z-index: -1;
+      }
+  
+      .service-card:hover span i::after {
+        opacity: 1;
+      }
+  
+      .service-card .card-content {
+        position: relative;
+        padding: 1rem 2rem 2rem;
+      }
+  
+      .service-card .card-content::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-color: var(--secondary-color-light);
+        z-index: -1;
+      }
+  
+      .service-card h4 {
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+  
+      .service-card p {
+        color: var(--text-light);
+      }
+  
+      .slider {
+        margin-top: 2rem;
+      }
+  
+      .slider .control {
+        margin-top: 2rem;
+        text-align: center;
+      }
+  
+      .slider button {
+        color: var(--white);
+        font-size: 0px;
+        border-radius: 50%;
+        border: 1px solid var(--secondary-color-dark);
+        background-color: var(--text-dark);
+      }
+  
+      button#prev {
+        padding: 0.45rem 0.5rem 0.45rem 0.7rem;
+      }
+  
+      button#next {
+        padding: 0.45rem 0.7rem 0.45rem 0.5rem;
+      }
+  
+      .slider button i {
+        font-size: 2rem;
+      }
+  
+      .slider-track {
+        display: flex;
+        overflow: hidden;
+      }
+  
+      .slide {
+        flex-shrink: 0;
+        position: absolute;
+        width: 100%;
+        padding: 2px;
+        transform: translateX(100%);
+      }
+  
+      .relative {
+        position: relative;
+      }
+  
+      /* .current {
+        transform: translate(0);
+        transition: transform 300ms;
+      }
+      
+      .next {
+        transform: translate(100%);
+        transition: transform 300ms;
+      }
+      
+      .prev {
+        transform: translate(-100%);
+        transition: transform 300ms;
+      } */
+  
+      .slide.fade-in-left {
+        animation: fade-in-left 1s linear forwards;
+      }
+  
+      @keyframes fade-in-left {
+        0% {
+          transform: translateX(100%);
+        }
+  
+        100% {
+          transform: translateX(0%);
+        }
+      }
+  
+      .slide.fade-in-right {
+        animation: fade-in-right 1s linear forwards;
+      }
+  
+      @keyframes fade-in-right {
+        0% {
+          transform: translateX(-100%);
+        }
+  
+        100% {
+          transform: translateX(0%);
+        }
+      }
+  
+      .slide.fade-out-left {
+        animation: fade-out-left 1s linear forwards;
+      }
+  
+      @keyframes fade-out-left {
+        0% {
+          transform: translateX(0%);
+        }
+  
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+  
+      .slide.fade-out-right {
+        animation: fade-out-right 1s linear forwards;
+      }
+  
+      @keyframes fade-out-right {
+        0% {
+          transform: translateX(0%);
+        }
+  
+        100% {
+          transform: translateX(100%);
+        }
+      }
+  
+      .client-card {
+        max-width: 750px;
+        margin-inline: auto;
+        padding: 2rem 1rem;
+        display: flex;
+        gap: 2rem;
+        flex-direction: column;
+        text-align: center;
+        border-radius: 12px;
+        background-color: var(--secondary-color-light);
+        box-shadow: 1px 1px 1px #000,
+          -1px -1px 1px #fff5;
+      }
+  
+      .client-card img {
+        max-width: 200px;
+        margin: auto;
+        padding: 4px;
+        border-radius: 50%;
+        border: 2px solid #f5f5f5;
+      }
+  
+      .client-card p {
+        margin-bottom: 1rem;
+        color: var(--text-light);
+      }
+  
+      .client-card h4 {
+        margin-bottom: 1rem;
+        color: var(--primary-color-dark);
+        font-size: 1.2rem;
+        font-weight: 400;
+      }
+  
+      .client-card h4 span {
+        margin-left: 10px;
+        color: var(--text-light);
+        font-size: 1rem;
+      }
+  
+      .blog-grid {
+        margin-top: 4rem;
+        display: grid;
+        gap: 2rem 1rem;
+      }
+  
+      .blog-card img {
+        margin-bottom: 1rem;
+        border-radius: 5px;
+      }
+  
+      .blog-card p {
+        margin-bottom: 5px;
+        color: var(--primary-color-dark);
+      }
+  
+      .blog-card h4 {
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+  
+      .blog-card a {
+        color: var(--text-light);
+        transition: color 300ms;
+      }
+  
+      .blog-card a:hover {
+        color: var(--primary-color-dark);
+      }
+  
+      .contact-form {
+        max-width: 600px;
+        margin-inline: auto;
+        margin-top: 4rem;
+        display: grid;
+        gap: 1rem;
+      }
+  
+      .contact-form .input-row {
+        display: flex;
+        gap: 1rem;
+        flex-direction: column;
+      }
+  
+      .contact-form input {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1rem;
+        color: var(--white);
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        border-bottom: 2px solid var(--primary-color-dark);
+        background-color: transparent;
+      }
+  
+      .contact-form input::placeholder {
+        color: var(--text-light);
+      }
+  
+      .contact-form .btn {
+        max-width: fit-content;
+        margin-inline: auto;
+        margin-top: 1rem;
+      }
+  
+      .footer {
+        background-color: var(--secondary-color-dark);
+      }
+  
+      .footer-container {
+        display: grid;
+        gap: 2rem;
+      }
+  
+      .footer-col h5 {
+        margin-bottom: 1.5rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+  
+      .footer-col p {
+        margin-bottom: 1.5rem;
+        color: var(--text-light);
+      }
+  
+      .footer-socials {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+  
+      .footer-socials a {
+        margin-bottom: 1rem;
+        padding: 3px 8px;
+        font-size: 1.25rem;
+        border-radius: 50%;
+        background-color: var(--secondary-color-light);
+        /* transition: 0.3s; */
+        transition: color 300ms,
+          background-image 300ms;
+      }
+  
+      .footer-socials a:hover {
+        color: var(--secondary-color);
+        background-image: var(--gradient);
+      }
+  
+      .footer-col h4 {
+        margin-bottom: 1.5rem;
+        font-size: 1.2rem;
+        font-weight: 500;
+      }
+  
+      .footer-links a {
+        display: block;
+        margin-bottom: 1rem;
+        color: var(--text-light);
+      }
+  
+      .footer-links a:hover {
+        color: var(--primary-color-dark);
+      }
+  
+      .footer-bar {
+        padding: 1rem;
+        color: var(--text-light);
+        font-size: 0.8rem;
+        text-align: center;
+      }
+  
+      @media (width > 480px) {
+        .banner-container {
+          grid-template-columns: repeat(2, 1fr);
+        }
+  
+        .project-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+  
+        .service-grid {
+          gap: 4rem 1rem;
+          grid-template-columns: repeat(2, 1fr);
+        }
+  
+        .blog-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+  
+        .contact-form .input-row {
+          flex-direction: row;
+        }
+  
+        .footer-container {
+          grid-template-columns: repeat(2, 1fr);
+        }
+  
+        .footer-col:first-child {
+          grid-column: 1/3;
+        }
+      }
+  
+      @media (width > 768px) {
+        .header-socials {
+          display: flex;
+        }
+  
+        nav {
+          position: static;
+        }
+  
+        .nav-bar {
+          padding: 2rem 1rem;
+        }
+  
+        .nav-header {
+          padding: 0;
+          background-color: transparent;
+        }
+  
+        .nav-menu-btn {
+          display: none;
+        }
+  
+        .nav-links {
+          position: static;
+          padding: 0;
+          flex-direction: row;
+          background-color: transparent;
+          transform: none;
+        }
+  
+        .header-container {
+          padding: 0 1rem;
+          gap: 2rem;
+          align-items: center;
+          grid-template-columns: repeat(2, 1fr);
+        }
+  
+        .header-content {
+          grid-area: 1/1/2/2;
+          padding-block: 5rem;
+          text-align: left;
+        }
+  
+        .about-container {
+          gap: 2rem;
+          align-items: center;
+          grid-template-columns: repeat(2, 1fr);
+        }
+  
+        .banner-container {
+          grid-template-columns: repeat(3, 1fr);
+        }
+  
+        .project-header {
+          flex-direction: row;
+        }
+  
+        .project-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+  
+        .service-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+  
+        .client-card {
+          align-items: center;
+          flex-direction: row;
+          text-align: left;
+        }
+  
+        .blog-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+  
+        .footer-container {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+  
+      @media (width > 1024px) {
+        .banner-container {
+          gap: 2rem;
+        }
+  
+        .project-grid {
+          gap: 2rem;
+        }
+  
+        .service-grid {
+          gap: 2rem;
+        }
+  
+        .blog-grid {
+          gap: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-socials">
+        <a href="#">
+          <i class="ri-mail-fill"></i>
+        </a>
+        <a href="#">
+          <i class="ri-github-fill"></i>
+        </a>
+        <a href="#">
+          <i class="ri-linkedin-fill"></i>
+        </a>
+      </div>
+      <nav>
+        <div class="nav-bar">
+          <div class="nav-header">
+            <div class="nav-logo">
+              <a href="#">A<span>.</span></a>
+            </div>
+            <button class="nav-menu-btn" id="menu-btn">
+              <span>
+                <i class="ri-menu-3-line"></i>
+              </span>
+            </button>
+          </div>
+          <ul class="nav-links" id="nav-links">
+            <li class="link">
+              <a href="#home">Home</a>
+            </li>
+            <li class="link">
+              <a href="#about">About</a>
+            </li>
+            <li class="link">
+              <a href="#project">Projects</a>
+            </li>
+            <li class="link">
+              <a href="#service">Services</a>
+            </li>
+            <li class="link">
+              <a href="#client">Clients</a>
+            </li>
+            <li class="link">
+              <a href="#blog">Blog</a>
+            </li>
+            <li class="link btn">
+              <a href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+  
+      <div class="section-container header-container" id="home">
+        <div class="header-image">
+          <img src="./images/header.png" alt="header" />
+        </div>
+        <div class="header-content">
+          <h4>Crafting Digital Excellence</h4>
+          <h1>Hi, I Am Andarson. This Is My Favorite Work!</h1>
+          <p>
+            I'm a dedicated web developer with a creative flair and a penchant
+            for turning lines of code into captivating online experiences. My
+            journey in the digital realm began years ago, and I've since honed
+            my skills in front-end and back-end development.
+          </p>
+          <button class="btn">Hire Me Now</button>
+        </div>
+      </div>
+    </header>
+    <script>
+      const menuBtn = document.getElementById("menu-btn");
+      const navLinks = document.getElementById("nav-links");
+      const menuBtnIcon = menuBtn.querySelector("i");
+  
+      menuBtn.addEventListener("click", (e) => {
+        navLinks.classList.toggle("open");
+  
+        const isOpen = navLinks.classList.contains("open");
+        menuBtnIcon.setAttribute(
+          "class",
+          isOpen ? "ri-close-line" : "ri-menu-3-line"
+        );
+      });
+  
+      navLinks.addEventListener("click", (e) => {
+        navLinks.classList.remove("open");
+        menuBtnIcon.setAttribute("class", "ri-menu-3-line");
+      });
+    </script>
+  
+    <section class="section-container about-container" id="about">
+      <div class="about-image">
+        <img src="./images/about.jpg" alt="about" />
+      </div>
+      <div class="about-content">
+        <h2 class="section-header">Hi There I Am Andarson</h2>
+        <p>
+          A passionate web developer with a creative flair and a knack for
+          turning visions into reality. My journey in web development began with
+          a fascination for coding and design, and it has evolved into a career
+          where I blend aesthetics with functionality.
+        </p>
+        <h4>
+          With a focus on user experience and a commitment to staying updated
+          with the latest industry trends, I'm dedicated to creating web
+          solutions that not only meet but exceed expectations.
+        </h4>
+        <div class="about-btns">
+          <a href="./images/Andarson_CV.pdf" download class="download-btn">
+            Download CV
+          </a>
+          <a href="#">
+            <i class="ri-mail-fill"></i>
+          </a>
+          <a href="#">
+            <i class="ri-github-fill"></i>
+          </a>
+          <a href="#">
+            <i class="ri-linkedin-fill"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+  
+    <section class="section-container banner-container">
+      <div class="banner-card">
+        <span>
+          <i class="ri-pen-nib-line"></i>
+        </span>
+        <div>
+          <h4>Design</h4>
+          <p>
+            Our designers and content creators are committed
+            to delivering engaging digital content.
+          </p>
+        </div>
+      </div>
+      <div class="banner-card">
+        <span>
+          <i class="ri-layout-masonry-line"></i>
+        </span>
+        <div>
+          <h4>Development</h4>
+          <p>
+            We stay at forefront of technological advancements,
+            ensuring your digital presence performant.
+          </p>
+        </div>
+      </div>
+      <div class="banner-card">
+        <span>
+          <i class="ri-checkbox-line"></i>
+        </span>
+        <div>
+          <h4>Testing & QA</h4>
+          <p>
+            We understand that your digital presence should not just
+            look good, it should deliver traffic & engagement.
+          </p>
+        </div>
+      </div>
+    </section>
+  
+    <section class="section-container project-container" id="project">
+      <div class="project-header">
+        <h2 class="section-header">Our Projects</h2>
+        <div class="project-nav">
+          <button class="btn project-btn mixitup-control-active" data-filter="all">
+            All
+          </button>
+          <button class="btn project-btn" data-filter=".web">
+            Web Apps
+          </button>
+          <button class="btn project-btn" data-filter=".game">
+            Games
+          </button>
+          <button class="btn project-btn" data-filter=".design">
+            Designs
+          </button>
+        </div>
+      </div>
+      <div class="project-grid">
+        <div class="project-card mix web">
+          <img src="./images/project-1.jpg" alt="project" />
+        </div>
+        <div class="project-card mix game">
+          <img src="./images/project-2.jpg" alt="project" />
+        </div>
+        <div class="project-card mix design">
+          <img src="./images/project-3.jpg" alt="project" />
+        </div>
+        <div class="project-card mix web">
+          <img src="./images/project-4.jpg" alt="project" />
+        </div>
+        <div class="project-card mix game">
+          <img src="./images/project-5.jpg" alt="project" />
+        </div>
+        <div class="project-card mix design">
+          <img src="./images/project-6.jpg" alt="project" />
+        </div>
+      </div>
+    </section>
+  
+    <section class="section-container service-container" id="service">
+      <p class="section-subheader">Our Services</p>
+      <h2 class="section-header">What We Do?</h2>
+      <p class="section-description">
+        We specialize in a wide range of web development services designed to
+        transform your vision into reality.
+      </p>
+      <div class="service-grid">
+        <div class="service-card">
+          <span class="card-icon">
+            <i class="ri-window-fill"></i>
+          </span>
+          <div class="card-content">
+            <h4>Website Design</h4>
+            <p>
+              We craft user-friendly interfaces that engage visitors and help you
+              achieve your online goals with minimum efforts.
+            </p>
+          </div>
+        </div>
+        <div class="service-card">
+          <span class="card-icon">
+            <i class="ri-store-line"></i>
+          </span>
+          <div class="card-content">
+            <h4>E-commerce Solutions</h4>
+            <p>
+              We build secure, scalable, and user-centric online stores that
+              enhance the shopping experience and drive conversions.
+            </p>
+          </div>
+        </div>
+        <div class="service-card">
+          <span class="card-icon">
+            <i class="ri-smartphone-line"></i>
+          </span>
+          <div class="card-content">
+            <h4>Mobile Development</h4>
+            <p>
+              From iOS to Android, we create apps that deliver seamless
+              performance and keep users coming back for more.
+            </p>
+          </div>
+        </div>
+        <div class="service-card">
+          <span class="card-icon">
+            <i class="ri-share-fill"></i>
+          </span>
+          <div class="card-content">
+            <h4>Content Marketing</h4>
+            <p>
+              Our services include creating blog posts, videos, and social media
+              content that drives traffic and engagement.
+            </p>
+          </div>
+        </div>
+        <div class="service-card">
+          <span class="card-icon">
+            <i class="ri-seo-line"></i>
+          </span>
+          <div class="card-content">
+            <h4>SEO</h4>
+            <p>
+              Our SEO strategies are tailored to your specific goals, helping you
+              reach your target audience and grow your online presence.
+            </p>
+          </div>
+        </div>
+        <div class="service-card">
+          <span class="card-icon">
+            <i class="ri-share-circle-line"></i>
+          </span>
+          <div class="card-content">
+            <h4>Digital Marketing</h4>
+            <p>
+              From pay-per-click (PPC) advertising to social media marketing, we
+              ensure your brand stands out in the crowded digital landscape.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="section-container client-container" id="client">
+      <p class="section-subheader">Testimonials</p>
+      <h2 class="section-header">What Our Clients Say About Us</h2>
+      <div class="slider">
+        <div class="slider-track relative">
+          <div class="slide relative current">
+            <div class="client-card">
+              <img src="./images/client-1.jpg" alt="client" />
+              <div>
+                <p>
+                  They transformed our online presence with their SEO and
+                  content marketing services. Our website now ranks higher in
+                  search results, and the quality of leads has improved
+                  substantially. I highly recommend their digital marketing
+                  expertise.
+                </p>
+                <h4>John Miller <span>CEO, Corporation</span></h4>
+                <div class="client-ratings">
+                  <span><i class="ri-star-fill"></i></span>
+                  <span><i class="ri-star-fill"></i></span>
+                  <span><i class="ri-star-fill"></i></span>
+                  <span><i class="ri-star-half-fill"></i></span>
+                  <span><i class="ri-star-line"></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slide next">
+            <div class="client-card">
+              <img src="./images/client-2.jpg" alt="client" />
+              <div>
+                <p>
+                  Working with them has been a game-changer for our business.
+                  Their web development expertise helped us create a sleek and
+                  responsive website that has significantly increased our online
+                  sales. Their dedication and innovative solutions truly set
+                  them apart.
+                </p>
+                <h4>Sarah Thompson <span>Marketing Director</span></h4>
+                <div class="client-ratings">
+                  <span><i class="ri-star-fill"></i></span>
+                  <span><i class="ri-star-fill"></i></span>
+                  <span><i class="ri-star-fill"></i></span>
+                  <span><i class="ri-star-fill"></i></span>
+                  <span><i class="ri-star-line"></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="client-card">
+              <img src="./images/client-3.jpg" alt="client" />
+              <div>
+                <p>
+                  Our digital marketing strategy needed a revamp, and they
+                  delivered outstanding results. Their team's creative approach
+                  to PPC campaigns and social media advertising has generated a
+                  significant increase in our website traffic and conversions.
+                </p>
+                <h4>David Peterson <span>Marketing Manager</span></h4>
+                <div class="client-ratings">
+                  <span><i class="ri-star-fill"></i></span>
+                  <span><i class="ri-star-fill"></i></span>
+                  <span><i class="ri-star-fill"></i></span>
+                  <span><i class="ri-star-fill"></i></span>
+                  <span><i class="ri-star-half-fill"></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slide prev">
+            <div class="client-card">
+              <img src="./images/client-4.jpg" alt="client" />
+              <div>
+                <p>
+                  The mobile app they developed for our company exceeded our
+                  expectations. Not only is it user-friendly, but it also helped
+                  us connect with our customers on a whole new level. Their
+                  attention to detail and commitment to delivering on time were
+                  exceptional.
+                </p>
+                <h4>Harrison Rogers <span>Product Manager</span></h4>
+                <div class="client-ratings">
+                  <span><i class="ri-star-fill"></i></span>
+                  <span><i class="ri-star-fill"></i></span>
+                  <span><i class="ri-star-fill"></i></span>
+                  <span><i class="ri-star-fill"></i></span>
+                  <span><i class="ri-star-fill"></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="control">
+          <button id="next">
+            next <i class="ri-arrow-left-double-line"></i>
+          </button>
+          <button id="prev">
+            prev <i class="ri-arrow-right-double-line"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+    <script>
+      const slides = document.querySelectorAll(".slide");
+      const nextb = document.getElementById("next");
+      const prevb = document.getElementById("prev");
+      let index = 0;
+      let prevIndex = 0;
+      let penultimateIndex = 0;
+  
+      nextb.addEventListener("click", () => {
+        const activeSlide = slides[index];
+        penultimateIndex = prevIndex;
+        const penultimateSlide = slides[penultimateIndex];
+        const penultimateSlideAnimations = penultimateSlide.getAnimations();
+        if (penultimateSlideAnimations.length > 0) {
+          penultimateSlideAnimations[0].finish();
+          activeSlide.getAnimations()[0].finish();
+          slides[prevIndex].getAnimations()[0].finish();
+        }
+        prevIndex = index;
+        activeSlide.classList.remove("fade-in-left", "fade-in-right");
+        activeSlide.classList.add("fade-out-left");
+        index++;
+        index = index % slides.length;
+        slides[index].classList.remove("fade-out-left", "fade-out-right");
+        slides[index].classList.add("fade-in-left");
+      })
+  
+      nextb.addEventListener("click", () => {
+        const activeSlide = slides[index];
+        activeSlide.classList.remove("active");
+      }, { once: true })
+  
+      prevb.addEventListener("click", () => {
+        const activeSlide = slides[index];
+        activeSlide.classList.remove("active");
+      }, { once: true })
+  
+      prevb.addEventListener("click", () => {
+        const activeSlide = slides[index];
+        penultimateIndex = prevIndex;
+        const penultimateSlide = slides[penultimateIndex];
+        const penultimateSlideAnimations = penultimateSlide.getAnimations();
+        if (penultimateSlideAnimations.length > 0) {
+          penultimateSlideAnimations[0].finish();
+          activeSlide.getAnimations()[0].finish();
+          slides[prevIndex].getAnimations()[0].finish();
+        }
+        prevIndex = index;
+        activeSlide.classList.remove("fade-in-left", "fade-in-right");
+        activeSlide.classList.add("fade-out-right");
+        index--;
+        index = index + slides.length;
+        index = index % slides.length;
+        slides[index].classList.remove("fade-out-left", "fade-out-right");
+        slides[index].classList.add("fade-in-right");
+      })    
+    </script>
+    <!-- <script>
+      const slides = document.querySelectorAll(".slide");
+      const forwards = document.getElementById("next");
+      const backwards = document.getElementById("prev");
+      const slidesLength = slides.length;
+      let current = 0;
+      let next = 1;
+      let prev = slidesLength - 1;
+  
+      forwards.addEventListener("click", () => {
+        slides[current].classList.replace("current", "prev");
+        slides[next].classList.replace("next", "current");
+        slides[prev].classList.remove("prev");
+        next++;
+        next = next % slidesLength;
+        slides[next].classList.add("next");
+        current++;
+        current = current % slidesLength;
+        prev++;
+        prev = prev % slidesLength;
+      });
+      
+      backwards.addEventListener("click", () => {
+        slides[current].classList.replace("current", "next");
+        slides[prev].classList.replace("prev", "current");
+        slides[next].classList.remove("next");
+        prev--;
+        prev = prev + slidesLength;
+        prev = prev % slidesLength;
+        slides[prev].classList.add("prev");
+        current--;
+        current = current + slidesLength;
+        current = current % slidesLength;
+        next--;
+        next = next + slidesLength;
+        next = next % slidesLength;
+      });
+    </script> -->
+  
+    <section class="section-container blog-container" id="blog">
+      <p class="section-subheader">Blog Posts</p>
+      <h2 class="section-header">I Love To Write Articles</h2>
+      <div class="blog-grid">
+        <div class="blog-card">
+          <img src="./images/blog-1.jpg" alt="blog" />
+          <p>Case Study</p>
+          <h4>Turning Clicks into Conversions with PPC</h4>
+          <a href="#">Read More</a>
+        </div>
+        <div class="blog-card">
+          <img src="./images/blog-2.jpg" alt="blog" />
+          <p>Educational/How-To</p>
+          <h4>The Ultimate Guide to Website Accessibility</h4>
+          <a href="#">Read More</a>
+        </div>
+        <div class="blog-card">
+          <img src="./images/blog-3.jpg" alt="blog" />
+          <p>Trend Analysis</p>
+          <h4>2023 Web Design Trends: What's In and What's Out</h4>
+          <a href="#">Read More</a>
+        </div>
+      </div>
+    </section>
+  
+    <section class="section-container contact-container" id="contact">
+      <p class="section-subheader">Contact Us</p>
+      <h2 class="section-header">Get In Touch</h2>
+      <form action="/" class="contact-form">
+        <div class="input-row">
+          <input type="text" placeholder="First Name" />
+          <input type="text" placeholder="Last Name" />
+        </div>
+        <input type="text" placeholder="Email" />
+        <input type="text" placeholder="Description" />
+        <button class="btn">Submit</button>
+      </form>
+    </section>
+  
+    <footer class="footer">
+      <div class="section-container footer-container">
+        <div class="footer-col">
+          <a href="#" class="logo">Andarson</a>
+          <p>
+            I'm a dedicated web developer with a creative flair and a penchant
+            for turning lines of code into captivating online experiences.
+          </p>
+          <div class="footer-socials">
+            <a href="#">
+              <i class="ri-mail-fill"></i>
+            </a>
+            <a href="#">
+              <i class="ri-github-fill"></i>
+            </a>
+            <a href="#">
+              <i class="ri-linkedin-fill"></i>
+            </a>
+            <a href="#">
+              <i class="ri-twitter-fill"></i>
+            </a>
+            <a href="#">
+              <i class="ri-dribbble-line"></i>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <div class="footer-links">
+            <a href="#">Web Design</a>
+            <a href="#">App Design</a>
+            <a href="#">Photography</a>
+            <a href="#">Videography</a>
+            <a href="#">Web Development</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <div class="footer-links">
+            <a href="#">Contact</a>
+            <a href="#">My Blog</a>
+            <a href="#">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bar">
+        Copyright © 2023 Company. All rights reserved.
+      </div>
+    </footer>
+  </body>
+</html>
